@@ -3,8 +3,7 @@ import React from 'react'
 const Header = () => {
   return (
     <div>
-        <Profile/>
-        <Jobs/>
+        <h2>Job Route</h2> 
         <button className="logout">Logout</button>
     </div>
   )

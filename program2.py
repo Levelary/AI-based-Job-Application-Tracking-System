@@ -144,59 +144,59 @@ print(f"Fair AI Statistical Parity Difference: {fair_metric.statistical_parity_d
 #
 
 
-# import tensorflow as tf
-# import tensorflow_model_analysis as tfma
+import tensorflow as tf
+import tensorflow_model_analysis as tfma
 
-# # Save dataset in TFRecord format
-# df.to_csv("fairness_data.csv", index=False)
+# Save dataset in TFRecord format
+df.to_csv("fairness_data.csv", index=False)
 
-# # Convert CSV to TF Dataset
-# def parse_csv(line):
-#     """Convert CSV line into a dictionary"""
-#     feature_names = list(df.columns)
-#     defaults = [tf.float32] * len(feature_names)  # Convert all to float
-#     parsed_line = tf.io.decode_csv(line, record_defaults=defaults)
-#     return dict(zip(feature_names, parsed_line))
+# Convert CSV to TF Dataset
+def parse_csv(line):
+    """Convert CSV line into a dictionary"""
+    feature_names = list(df.columns)
+    defaults = [tf.float32] * len(feature_names)  # Convert all to float
+    parsed_line = tf.io.decode_csv(line, record_defaults=defaults)
+    return dict(zip(feature_names, parsed_line))
 
-# # Load data as TensorFlow Dataset
-# dataset = tf.data.experimental.make_csv_dataset("fairness_data.csv", batch_size=1, num_epochs=1)
+# Load data as TensorFlow Dataset
+dataset = tf.data.experimental.make_csv_dataset("fairness_data.csv", batch_size=1, num_epochs=1)
 
-# # Define fairness evaluation config
-# eval_config = tfma.EvalConfig(
-#     model_specs=[tfma.ModelSpec(label_key="AI_Hiring_Decision")],
-#     slicing_specs=[tfma.SlicingSpec()],
-#     metrics_specs=[
-#         tfma.MetricsSpec(metrics=[
-#             tfma.MetricConfig(class_name="FairnessIndicators"),
-#         ])
-#     ]
-# )
+# Define fairness evaluation config
+eval_config = tfma.EvalConfig(
+    model_specs=[tfma.ModelSpec(label_key="AI_Hiring_Decision")],
+    slicing_specs=[tfma.SlicingSpec()],
+    metrics_specs=[
+        tfma.MetricsSpec(metrics=[
+            tfma.MetricConfig(class_name="FairnessIndicators"),
+        ])
+    ]
+)
 
-# # Run evaluation
-# eval_result = tfma.run_model_analysis(eval_config=eval_config, data_location="fairness_data.csv")
-# tfma.view.render_fairness_indicator(eval_result)
-
-
-# #
-# #
-# # hugging face model
-# #
-# #
+# Run evaluation
+eval_result = tfma.run_model_analysis(eval_config=eval_config, data_location="fairness_data.csv")
+tfma.view.render_fairness_indicator(eval_result)
 
 
-# from transformers import pipeline
+#
+#
+# hugging face model
+#
+#
 
-# # Load NLP model for sentiment/skill assessment
-# soft_skill_analyzer = pipeline("text-classification", model="cross-encoder/nli-deberta-v3-base")
 
-# # Example candidate responses
-# responses = [
-#     "I am a great team player with excellent leadership skills.",
-#     "I work well under pressure and adapt to challenges easily.",
-#     "I have deep technical expertise in machine learning."
-# ]
+from transformers import pipeline
 
-# # Analyze soft skills
-# for response in responses:
-#     analysis = soft_skill_analyzer(response)
-#     print(f"Response: {response}\nSoft Skill Score: {analysis}\n")
+# Load NLP model for sentiment/skill assessment
+soft_skill_analyzer = pipeline("text-classification", model="cross-encoder/nli-deberta-v3-base")
+
+# Example candidate responses
+responses = [
+    "I am a great team player with excellent leadership skills.",
+    "I work well under pressure and adapt to challenges easily.",
+    "I have deep technical expertise in machine learning."
+]
+
+# Analyze soft skills
+for response in responses:
+    analysis = soft_skill_analyzer(response)
+    print(f"Response: {response}\nSoft Skill Score: {analysis}\n")

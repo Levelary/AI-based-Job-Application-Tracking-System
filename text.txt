@@ -11,3 +11,7 @@ Updated Steps for Skill Bias Detection & Mitigation
 1️⃣ Simulate AI Skill Evaluation – AI scores candidates based on skills.
 2️⃣ Detect Skill Bias – Check if highly skilled candidates were unfairly rejected.
 3️⃣ Mitigate Bias – Adjust AI scoring to prevent unfair filtering.
+
+
+create a virtual environment using :
+python3.10 -m venv tf-env
