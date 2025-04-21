@@ -1,0 +1,27 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(228, 244, 244);
+}
+
+.container {
+    height: 30vh;
+    background-color: rgb(63, 197, 197);
+    padding: 3vw;
+    border-radius: 15px;
+}
+
+.container input {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+.container input:hover {
+    border: 2px solid black;
+    box-shadow: 0 0 5px rgba(63, 197, 197, 0.5);
+}
