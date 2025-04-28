@@ -4,9 +4,8 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn');  // or localStorage.setItem('isLoggedIn', 'false');
-    localStorage.removeItem('role');
-    localStorage.removeItem('id');
+    localStorage.clear();
+    // window.location.href = '/login';
     navigate('/login');
   };
 

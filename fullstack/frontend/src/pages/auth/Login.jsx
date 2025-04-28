@@ -25,9 +25,10 @@ const Login = () => {
         localStorage.setItem('isLoggedIn', true);
         localStorage.setItem('role', response.data.role); // Storing user data in local storage
         localStorage.setItem('id', response.data.id); 
+        setisloggedIn(true); // Update login state
 
         setTimeout(() => {
-          navigate('/'); // Redirect to home page after success
+          navigate('/', {replace: true}); // Redirect to home page after success and 'replace' ensures no browser history
         }, 2000); // Wait for 2 seconds before redirect
       } 
       else {

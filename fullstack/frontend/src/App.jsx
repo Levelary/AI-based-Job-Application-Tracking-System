@@ -8,7 +8,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
 
   useEffect(() => {
-    const handleChange = () => {
+    const handleChange = () => { // checks if user logs in another browser
       setIsLoggedIn(localStorage.getItem('isLoggedIn') === 'true');
     }
     window.addEventListener('storage', handleChange);
@@ -22,7 +22,7 @@ function App() {
     <Routes>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<Signup/>}/>
-      <Route path="/" element={isLoggedIn? <Home/> : <Login/>}/>
+      <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn}/>}/>
     </Routes>
   )
 }

@@ -6,14 +6,15 @@ html, body {
 }
 
 .container {
-    height: 30vh;
+    width: 40vw;
+    height: auto;
     background-color: rgb(63, 197, 197);
-    padding: 3vw;
+    padding: 5vw;
     border-radius: 15px;
 }
 
 .container input {
-    width: 100%;
+    width: 20vw;
     height: 40px;
     border-radius: 10px;
     border: none;
@@ -22,6 +23,21 @@ html, body {
 }
 
 .container input:hover {
+    /* width: ; */
     border: 2px solid black;
     box-shadow: 0 0 5px rgba(63, 197, 197, 0.5);
+}
+
+h2 {
+    margin: -20px 0 50px 0;
+    font-size:xx-large;
+}
+
+select {
+    border-radius: 8px;
+    padding: 5px;
+    margin-left: 5px;
+}
+button {
+    margin-top: 20px;
 }

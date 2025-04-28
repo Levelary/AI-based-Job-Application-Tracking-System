@@ -51,7 +51,7 @@ const Signup = () => {
     }
   }
   return (
-    <div className={styles.container} style={{ height: '50vh' }}>
+    <div className={styles.container} style={{ height: '55vh' }}>
     <h2>Signup</h2>
     <form onSubmit={handleSignup}>
         <div>
@@ -61,7 +61,7 @@ const Signup = () => {
         <div>
           <input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required/>
         </div>
-        <div>
+        <div style={{margin: '20px 0 20px 0'}}>
           <input type='password' placeholder='Re-enter Password' value={verifyPassword} onChange={(e) => setVerifyPassword(e.target.value)} required/>
         </div>
         <div>

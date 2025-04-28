@@ -6,7 +6,7 @@ import JobRoles from '../components/jobRoles';
 
 const Home = () => {
   let role = localStorage.getItem('role');
-  let id = localStorage.getItem('id');
+  // let id = localStorage.getItem('id');
   return (
     <div>
         <Header />

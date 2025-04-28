@@ -34,7 +34,7 @@ def login():
     existingUser = cursor.fetchone()
 
     if existingUser and bcrypt.checkpw(password.encode('utf-8'), existingUser['password'].encode('utf-8')):
-        return jsonify({"success": True, "role": existingUser['role'], "id":existingUser['id']}) # "user": {"email": existingUser["email"]}})
+        return jsonify({"success": True, "role": existingUser['role'], "id": existingUser['id']}) # "user": {"email": existingUser["email"]}})
     else:
         return jsonify({"success": False, "message": "Invalid credentials"}), 401
  
@@ -55,6 +55,32 @@ def register():
             return jsonify({"success": False, "error": "Email already registered"}), 409
 
         cursor.execute("INSERT INTO users (email, password, role) VALUES (%s, %s, %s)", (email, hashed.decode('utf-8'), role))
+        dbconn.commit()
+        return jsonify({"success": True})
+    except mysql.connector.Error as err:
+        return jsonify({"success": False, "error": str(err)}), 500
+   
+   
+@app.route('/applications', methods=['GET'])
+def getApplicatons():
+    try:
+        userId = localStorage.getItem('userId');
+        cursor.execute("SELECT * FROM jobRoles")
+
+        dbconn.commit()
+        return jsonify({"success": True})
+    except mysql.connector.Error as err:
+        return jsonify({"success": False, "error": str(err)}), 500
+   
+   
+@app.route('/jobRoles/${jobId}/apply', methods=['POST'])
+def getJobRoles():
+    data = request.get_json()
+    id = data['userId']
+
+    try:
+        cursor.execute("ALTER   FROM users WHERE email = %s", (email,))
+        
         dbconn.commit()
         return jsonify({"success": True})
     except mysql.connector.Error as err:
